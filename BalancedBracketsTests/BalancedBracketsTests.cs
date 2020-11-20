@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BalancedBracketsNS;
+using System;
 
 namespace BalancedBracketsTests
 {
@@ -11,7 +12,32 @@ namespace BalancedBracketsTests
         [TestMethod]
         public void EmptyTest()
         {
-            Assert.AreEqual(true, true);
+            Boolean result = BalancedBrackets.HasBalancedBrackets("");
+            Assert.AreEqual(result, true);
+        }
+
+        [TestMethod]
+        public void PartialWrapTrue()
+        {
+            string input = "Launch[Code]"; ;
+            bool result = BalancedBrackets.HasBalancedBrackets(input);
+            Assert.AreEqual(result, true);
+        }
+
+        [TestMethod]
+        public void FullWrapUnbalancedFalse()
+        {
+            string input = "[LaunchCode"; ;
+            bool result = BalancedBrackets.HasBalancedBrackets(input);
+            Assert.AreEqual(result, false);
+        }
+
+        [TestMethod]
+        public void WrongNestedFalse()
+        {
+            string input = "]["; ;
+            bool result = BalancedBrackets.HasBalancedBrackets(input);
+            Assert.AreEqual(result, false);
         }
     }
 }
